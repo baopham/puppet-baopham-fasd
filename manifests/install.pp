@@ -21,8 +21,8 @@ define fasd::install() {
   }
 
   exec { 'fasd::make install':
-    cwd   => "/home/${name}/fasd",
-    command => "make install",
+    cwd     => "/home/${name}/fasd",
+    command => "PREFIX=/usr/local sudo make install",
     user    => $name,
     require => Exec["fasd::git clone"],
   }
