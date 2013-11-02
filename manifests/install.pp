@@ -21,10 +21,11 @@ define fasd::install() {
   }
 
   exec { 'fasd::make install':
-    cwd     => "/home/${name}/fasd",
-    command => "PREFIX=/usr/local sudo make install",
-    user    => $name,
-    require => Exec["fasd::git clone"],
+    cwd       => "/home/${name}/fasd",
+    command   => "PREFIX=/usr/local sudo make install",
+    user      => $name,
+    require   => Exec["fasd::git clone"],
+    provider  => shell
   }
 
   notify { 'Please put ```eval "$(fasd --init auto)"``` in your .bashrc or .zshrc':
